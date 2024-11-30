@@ -18,8 +18,20 @@ export class Farmer {
   @Column({ length: 15 })
   phone_number: string; // Farmer's phone number (must be unique)
 
+  @Column({ length: 50 })
+  gov_id: string;
+
+  @Column({ type: 'text', nullable: true })
+  crops?: string;
+
+  @Column({ length: 255, nullable: true })
+  profile_image?: string;
+
   @Column({ length: 255, nullable: true })
   farm_location?: string; // Optional field for the farm's location
+
+  @Column({ length: 100 })
+  farm_name: string;
 
   @Column()
   password: string; // Farmer's hashed password

@@ -6,9 +6,11 @@ import {
   Body,
   Put,
   Delete,
+  Patch,
 } from '@nestjs/common';
 import { FarmerService } from './farmer.service';
 import { Farmer } from './farmer.entity';
+import { UpdateFarmerDto } from './dto/update-farmer.dto';
 
 @Controller('farmers')
 export class FarmerController {
@@ -29,10 +31,10 @@ export class FarmerController {
     return this.farmerService.create(farmer);
   }
 
-  @Put(':id')
+  @Patch('/profile/:id')
   async update(
     @Param('id') id: number,
-    @Body() updateData: Partial<Farmer>,
+    @Body() updateData: UpdateFarmerDto,
   ): Promise<Farmer> {
     return this.farmerService.update(id, updateData);
   }

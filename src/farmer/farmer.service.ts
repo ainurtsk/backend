@@ -24,8 +24,23 @@ export class FarmerService {
   }
 
   async update(id: number, updateData: Partial<Farmer>): Promise<Farmer> {
-    await this.farmerRepository.update(id, updateData);
-    return this.farmerRepository.findOne({ where: { farmer_id: id } });
+    const farmer = await this.farmerRepository.findOne({
+      where: { farmer_id: id },
+    });
+
+    if (!farmer) {
+      throw new Error('Farmer not found'); // You can also use a specific Exception
+    }
+
+    // Merge the updateData into the existing farmer entity
+    for (const key in updateData) {
+      if (updateData[key] !== undefined) {
+        farmer[key] = updateData[key];
+      }
+    }
+
+    // Save the updated farmer
+    return this.farmerRepository.save(farmer);
   }
 
   async delete(id: number): Promise<void> {

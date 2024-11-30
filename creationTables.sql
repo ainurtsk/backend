@@ -5,7 +5,12 @@ CREATE TABLE Farmer (
     farmer_email VARCHAR(100) UNIQUE NOT NULL,
     phone_number VARCHAR(15) UNIQUE NOT NULL,
     farm_location VARCHAR(255),
-    password VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
+    gov_id VARCHAR(50) UNIQUE NOT NULL,
+    crops TEXT,
+    profile_image VARCHAR(255),
+    farm_name VARCHAR(100) NOT NULL,
+    farm_size NUMERIC CHECK (farm_size >= 0)
 );
 
 -- Create Farm table
@@ -83,8 +88,8 @@ RETURNS TRIGGER AS $$
 BEGIN
     -- Calculate total_price as quantity * product_price
     NEW.total_price := NEW.quantity * (
-        SELECT product_price 
-        FROM Product 
+        SELECT product_price
+        FROM Product
         WHERE product_id = NEW.product_id
     );
     RETURN NEW;
@@ -98,16 +103,16 @@ EXECUTE FUNCTION calculate_order_detail_total();
 
 -- Create View: OrderPaymentSummary
 CREATE OR REPLACE VIEW OrderPaymentSummary AS
-SELECT 
+SELECT
     o.order_id,
     SUM(od.total_price) AS total_product_price,
     d.delivery_cost,
     (SUM(od.total_price) + d.delivery_cost) AS total_cost
-FROM 
+FROM
     Orders o
-JOIN 
+JOIN
     OrderDetails od ON o.order_id = od.order_id
-JOIN 
+JOIN
     Delivery d ON o.order_id = d.order_id
-GROUP BY 
+GROUP BY
     o.order_id, d.delivery_cost;

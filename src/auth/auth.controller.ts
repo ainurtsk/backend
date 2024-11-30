@@ -31,6 +31,8 @@ export class AuthController {
         phone_number: data.phone_number,
         farm_location: data.farm_location,
         password: data.password,
+        farm_name: data.farm_name,
+        gov_id: data.gov_id,
       };
       return this.authService.registerFarmer(farmerData);
     } else if (userType === 'buyer') {

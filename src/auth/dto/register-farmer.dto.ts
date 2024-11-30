@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
+import { IsEmail, IsNotEmpty, MinLength, IsString } from 'class-validator';
 
 export class RegisterFarmerDto {
   @IsNotEmpty()
@@ -13,11 +13,20 @@ export class RegisterFarmerDto {
   @IsNotEmpty()
   phone_number: string;
 
+  @IsNotEmpty()
   farm_location?: string; // Optional field
+
+  @IsNotEmpty()
+  @IsString()
+  farm_name: string;
 
   @IsNotEmpty()
   @MinLength(6, {
     message: 'Password must be at least 6 characters long',
   })
   password: string;
+
+  @IsNotEmpty()
+  @IsString()
+  gov_id: string;
 }
