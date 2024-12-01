@@ -1,5 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, Unique } from 'typeorm';
-
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  Unique,
+  OneToMany,
+} from 'typeorm';
+import { Product } from '../product/product.entity';
 @Entity('farmer') // Table name in the database
 @Unique(['farmer_email', 'phone_number']) // Ensures email and phone are unique
 export class Farmer {
@@ -35,4 +41,7 @@ export class Farmer {
 
   @Column()
   password: string; // Farmer's hashed password
+
+  @OneToMany(() => Product, (product) => product.farmer, { cascade: true })
+  products: Product[]; // One farmer can have many products
 }

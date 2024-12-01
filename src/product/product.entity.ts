@@ -1,0 +1,29 @@
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Farmer } from '../farmer/farmer.entity';
+
+@Entity('products')
+export class Product {
+  @PrimaryGeneratedColumn()
+  product_id: number;
+
+  @ManyToOne(() => Farmer, (farmer) => farmer.products, { onDelete: 'CASCADE' })
+  farmer: Farmer;
+
+  @Column({ length: 100 })
+  product_name: string;
+
+  @Column('text')
+  product_description: string;
+
+  @Column('decimal', { precision: 10, scale: 2 })
+  product_price: number;
+
+  @Column('int')
+  product_quantity: number;
+
+  @Column({
+    type: 'enum',
+    enum: ['Vegetables', 'Fruits', 'Seeds', 'Equipment'],
+  })
+  product_category: string;
+}

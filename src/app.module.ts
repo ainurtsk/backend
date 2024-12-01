@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { FarmerModule } from './farmer/farmer.module';
 import { BuyerModule } from './buyer/buyer.module';
+import { ProductModule } from './product/product.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   controllers: [AppController],
@@ -24,6 +26,8 @@ import { BuyerModule } from './buyer/buyer.module';
     AuthModule,
     FarmerModule,
     BuyerModule,
+    ProductModule,
+    CategoriesModule,
   ],
 })
 export class AppModule {}

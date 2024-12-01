@@ -1,13 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Farmer } from './farmer.entity';
+import { Farmer } from './farmer.entity'; // Import the Farmer entity
 import { FarmerService } from './farmer.service';
-import { FarmerController } from './farmer.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Farmer])],
-  controllers: [FarmerController],
+  imports: [TypeOrmModule.forFeature([Farmer])], // Register Farmer entity in TypeOrm
   providers: [FarmerService],
-  exports: [FarmerService],
+  exports: [TypeOrmModule], // Export TypeOrmModule so other modules can access FarmerRepository
 })
 export class FarmerModule {}
