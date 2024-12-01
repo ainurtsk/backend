@@ -21,6 +21,9 @@ export class Product {
   @Column('int')
   product_quantity: number;
 
+  @Column({ length: 255, nullable: true })
+  product_image?: string;
+
   @Column({
     type: 'enum',
     enum: ['Vegetables', 'Fruits', 'Seeds', 'Equipment'],

@@ -22,7 +22,8 @@ CREATE TABLE Product (
                          category VARCHAR(50) CHECK (category IN ('Vegetables', 'Fruits', 'Seeds', 'Equipment')),
                          product_price NUMERIC(10, 2) NOT NULL,
                          product_quantity INT NOT NULL,
-                         product_description TEXT
+                         product_description TEXT,
+                         product_image VARCHAR(255)
 );
 
 -- Create Buyer table

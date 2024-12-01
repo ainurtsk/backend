@@ -22,7 +22,7 @@ export class UpdateFarmerDto {
 
   @IsOptional()
   @IsString()
-  profile_image?: string;
+  product_image?: string;
 
   @IsOptional()
   @IsString()
