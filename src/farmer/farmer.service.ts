@@ -23,13 +23,21 @@ export class FarmerService {
     return this.farmerRepository.save(newFarmer);
   }
 
-  async update(id: number, updateData: Partial<Farmer>): Promise<Farmer> {
+  async update(
+    id: number,
+    updateData: Partial<Farmer>,
+    profileImagePath?: string,
+  ): Promise<Farmer> {
     const farmer = await this.farmerRepository.findOne({
       where: { farmer_id: id },
     });
 
     if (!farmer) {
       throw new Error('Farmer not found'); // You can also use a specific Exception
+    }
+
+    if (profileImagePath) {
+      farmer.profile_image = profileImagePath;
     }
 
     // Merge the updateData into the existing farmer entity
