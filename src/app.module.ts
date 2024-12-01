@@ -7,6 +7,8 @@ import { FarmerModule } from './farmer/farmer.module';
 import { BuyerModule } from './buyer/buyer.module';
 import { ProductModule } from './product/product.module';
 import { CategoriesModule } from './categories/categories.module';
+import { Farmer } from './farmer/farmer.entity';
+import { Product } from './product/product.entity';
 
 @Module({
   controllers: [AppController],
@@ -15,17 +17,18 @@ import { CategoriesModule } from './categories/categories.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      // host: 'postgresql://ainura:HhrH4pqsg0ySh8u7QrnI9pFaUWXvNnFq@dpg-ct68t2l6l47c7381pc80-a.oregon-postgres.render.com/db_ce3j',
-      // port: 5432,
-      // username: 'ainura',
-      // password: 'HhrH4pqsg0ySh8u7QrnI9pFaUWXvNnFq',
-      // database: 'db_ce3j',
-      url: 'postgresql://ainura:HhrH4pqsg0ySh8u7QrnI9pFaUWXvNnFq@dpg-ct68t2l6l47c7381pc80-a.oregon-postgres.render.com:5432/db_ce3j', // full URL
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: '2317',
+      database: 'project_swe',
+      //url: 'postgresql://ainura:HhrH4pqsg0ySh8u7QrnI9pFaUWXvNnFq@dpg-ct68t2l6l47c7381pc80-a.oregon-postgres.render.com:5432/db_ce3j', // full URL
       autoLoadEntities: true,
       synchronize: true,
-      ssl: {
-        rejectUnauthorized: false, // Optional but required in some cases to avoid issues with self-signed certificates
-      },
+      entities: [Product, Farmer],
+      // ssl: {
+      //   rejectUnauthorized: false, // Optional but required in some cases to avoid issues with self-signed certificates
+      // },
     }),
     AuthModule,
     FarmerModule,

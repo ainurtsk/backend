@@ -1,4 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Farmer } from '../farmer/farmer.entity';
 
 @Entity('products')
@@ -6,7 +12,8 @@ export class Product {
   @PrimaryGeneratedColumn()
   product_id: number;
 
-  @ManyToOne(() => Farmer, (farmer) => farmer.products, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Farmer, (farmer) => farmer.products)
+  @JoinColumn({ name: 'farmerId' }) // Ensure you have this join column
   farmer: Farmer;
 
   @Column({ length: 100 })

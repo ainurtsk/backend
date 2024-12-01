@@ -6,6 +6,6 @@ import { FarmerService } from './farmer.service';
 @Module({
   imports: [TypeOrmModule.forFeature([Farmer])], // Register Farmer entity in TypeOrm
   providers: [FarmerService],
-  exports: [TypeOrmModule], // Export TypeOrmModule so other modules can access FarmerRepository
+  exports: [FarmerService], // Export TypeOrmModule so other modules can access FarmerRepository
 })
 export class FarmerModule {}
