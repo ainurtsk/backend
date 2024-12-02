@@ -104,6 +104,6 @@ export class AuthService {
     };
     const token = this.jwtService.sign(payload);
 
-    return { accessToken: token, id: payload.id, role: userType };
+    return { accessToken: token, id: payload.id, role: userType, user };
   }
 }

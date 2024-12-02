@@ -50,6 +50,7 @@ export class AuthController {
       throw new Error('Invalid user type');
     }
   }
+
   // @Post('login')
   // login(
   //   @Body() loginDto: LoginDto,
