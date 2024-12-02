@@ -24,7 +24,7 @@ import { Product } from './product/product.entity';
       // database: 'project_swe',
       url: 'postgresql://ainura:HhrH4pqsg0ySh8u7QrnI9pFaUWXvNnFq@dpg-ct68t2l6l47c7381pc80-a.oregon-postgres.render.com:5432/db_ce3j', // full URL
       autoLoadEntities: true,
-      synchronize: false,
+      synchronize: true,
       entities: [Product, Farmer],
       ssl: {
         rejectUnauthorized: false, // Optional but required in some cases to avoid issues with self-signed certificates

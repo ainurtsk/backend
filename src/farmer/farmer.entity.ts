@@ -44,7 +44,4 @@ export class Farmer {
 
   @OneToMany(() => Product, (product) => product.farmer, { cascade: true })
   products: Product[]; // One farmer can have many products
-
-  @Column({ type: 'enum', enum: ['pending', 'approved'], default: 'pending' })
-  status: 'pending' | 'approved';
 }
