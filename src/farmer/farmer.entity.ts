@@ -43,8 +43,5 @@ export class Farmer {
   password: string; // Farmer's hashed password
 
   @OneToMany(() => Product, (product) => product.farmer, { cascade: true })
-  products: Product[]; // One farmer can have many products
-
-  @Column({ type: 'enum', enum: ['pending', 'approved'], default: 'pending' })
-  status: 'pending' | 'approved';
+  products: Product[]; // One farmer can have many product
 }
