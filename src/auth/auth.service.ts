@@ -73,6 +73,11 @@ export class AuthService {
     let user: Farmer | Buyer | null;
     if (userType === 'farmer') {
       user = await this.farmerRepository.findOneBy({ farmer_email: email });
+      if (user) {
+        if (user.status == 'pending') {
+          throw new UnauthorizedException('Farmer account is pending approval');
+        }
+      }
     } else if (userType === 'buyer') {
       user = await this.buyerRepository.findOneBy({ email });
     } else {
