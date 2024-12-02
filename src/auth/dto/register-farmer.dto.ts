@@ -13,10 +13,8 @@ export class RegisterFarmerDto {
   @IsNotEmpty()
   phone_number: string;
 
-  @IsNotEmpty()
   farm_location?: string; // Optional field
 
-  @IsNotEmpty()
   @IsString()
   farm_name: string;
 
